@@ -1,0 +1,70 @@
+:root {
+  --logoSize: 20px;
+  --logoPadding: 40% 0%;
+}
+@media screen and (min-width: 400px) {
+  :root {
+    --logoSize: 40px;
+    --logoPadding: 10% 0%;
+  }
+}
+@media screen and (min-width: 600px) {
+  :root {
+    --logoSize: 50px;
+    --logoPadding: 0%;
+  }
+}
+
+.blue {
+  color: blue;
+  font-size: var(--logoSize);
+}
+.red {
+  color: red;
+  font-size: var(--logoSize);
+}
+.green {
+  color: green;
+  font-size: var(--logoSize);
+}
+.yellow {
+  color: yellow;
+  font-size: var(--logoSize);
+}
+
+.logo {
+  text-decoration: none;
+  display: flex;
+  padding: var(--logoPadding);
+}
+.mainmenu {
+  font-size: 18px;
+}
+.login {
+  font-size: 18px;
+}
+.logout {
+  font-size: 18px;
+}
+.mainmenu,
+.login,
+.logout {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  list-style: none;
+  padding-left: 0;
+}
+
+li a {
+  text-decoration: none;
+}
+
+/* header => logo mainmenu login logout */
+.header {
+  display: grid;
+  grid-template-columns: 1fr 2fr 0.9fr;
+  column-gap: 10%;
+  justify-content: space-between;
+  background-color: aliceblue;
+}

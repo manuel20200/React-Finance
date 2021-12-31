@@ -1,0 +1,23 @@
+/* select {
+  height: 23px;
+  width: 15%;
+} */
+
+.button {
+  display: block;
+  margin: auto;
+  margin-top: 1.5%;
+}
+
+.inputShares {
+  height: 23px;
+  display: block;
+  margin: auto;
+  margin-top: 1.5%;
+  width: 15%;
+}
+
+.inputSymbol {
+  height: 29px;
+  width: 16%;
+}

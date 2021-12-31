@@ -1,0 +1,23 @@
+table {
+  border-collapse: collapse;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+th,
+tr {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+  background-color: rgb(173, 234, 238);
+}
+
+.button {
+  display: block;
+  margin: auto;
+  margin-top: 1%;
+}

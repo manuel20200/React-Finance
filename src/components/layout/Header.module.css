@@ -1,0 +1,75 @@
+:root {
+  --logoSize: 20px;
+  --logoPadding1: 10% 0%;
+}
+@media screen and (min-width: 400px) {
+  :root {
+    --logoSize: 40px;
+    --logoPadding1: 3% 0%;
+  }
+}
+@media screen and (min-width: 600px) {
+  :root {
+    --logoSize: 50px;
+    --logoPadding1: 0%;
+  }
+}
+
+.blue {
+  color: blue;
+  font-size: var(--logoSize);
+}
+.red {
+  color: red;
+  font-size: var(--logoSize);
+}
+.green {
+  color: green;
+  font-size: var(--logoSize);
+}
+.yellow {
+  color: yellow;
+  font-size: var(--logoSize);
+}
+
+.logo {
+  flex-basis: 20%;
+  text-decoration: none;
+  padding: var(--logoPadding1);
+}
+.mainmenu {
+  font-size: 18px;
+  width: 40%;
+  max-width: 40%;
+}
+.login {
+  /*   border: 2px solid yellow;
+ */
+  font-size: 18px;
+  width: 15%;
+  max-width: 20%;
+}
+.logout {
+  font-size: 18px;
+  width: 15%;
+  max-width: 20%;
+}
+.mainmenu,
+.login,
+.logout {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  list-style: none;
+}
+
+li a {
+  text-decoration: none;
+}
+
+/* header => logo mainmenu login logout */
+.header {
+  display: flex;
+  justify-content: space-between;
+  background-color: aliceblue;
+}

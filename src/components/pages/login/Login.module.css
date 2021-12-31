@@ -1,0 +1,15 @@
+.button {
+    display: block;
+    margin: auto;
+    margin-top: 1.5%;
+  }
+  
+  .inputUser,
+  .inputPassword {
+    height: 23px;
+    display: block;
+    margin: auto;
+    margin-top: 1.5%;
+    width: 15%;
+  }
+  

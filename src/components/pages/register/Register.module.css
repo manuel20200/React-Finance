@@ -1,0 +1,14 @@
+.button {
+  display: block;
+  margin: auto;
+  margin-top: 1.5%;
+}
+
+.inputSymbol,
+.inputShares {
+  height: 23px;
+  display: block;
+  margin: auto;
+  margin-top: 1.5%;
+  width: 15%;
+}
