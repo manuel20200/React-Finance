@@ -9,8 +9,8 @@ const InputStockOptions = (props) => {
 };
 
 const Sell = () => {
-  const shareSymbol = useRef();
-  const shareQuantity = useRef();
+  const shareSymbolRef = useRef();
+  const shareQuantityRef = useRef();
   const [shares, setShares] = useState(null);
   const {
     isFbLoading,
@@ -43,9 +43,9 @@ const Sell = () => {
   const sellStockDataHandler = async () => {
     const newTransacted = { trans: ["", "", 0, 0, "1970-01-01"] };
     const { price, symbol, name } = await fetchStockData({
-      symbol: shareSymbol.current.value,
+      symbol: shareSymbolRef.current.value,
     });
-    const sharesNumber = parseInt(shareQuantity.current.value);
+    const sharesNumber = parseInt(shareQuantityRef.current.value);
 
     const sellStocksProcess = (data) => {
       let sharesArray = [];
@@ -101,7 +101,7 @@ const Sell = () => {
         placeholder="Symbol"
         type="text"
         id="shareSymbol"
-        ref={shareSymbol}
+        ref={shareSymbolRef}
       >
         {shares === null && (
           <>
@@ -120,7 +120,7 @@ const Sell = () => {
         placeholder="Shares"
         type="number"
         id="shareQuantity"
-        ref={shareQuantity}
+        ref={shareQuantityRef}
         min="1"
         max="15"
       ></input>

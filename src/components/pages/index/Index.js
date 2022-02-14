@@ -39,6 +39,10 @@ const Index = () => {
           return { ...prev, cash: data[key]["cash"] };
         });
         for (let stocks in data[key]["stocks"][0]) {
+          // Do not push the initial register state 'avoid'
+          if (stocks === "avoid") {
+            continue;
+          }
           const value = data[key]["stocks"][0][stocks];
           stocksArray.push({
             symbol: stocks,
@@ -48,7 +52,6 @@ const Index = () => {
             total: 0,
           });
         }
-        console.log(stocksArray);
         return stocksArray;
       }
     }
@@ -63,7 +66,6 @@ const Index = () => {
       cfgFbObj,
       fetchDataDbFbTransformation
     );
-    console.log(stocksArray);
     let i = 0;
     for (let x of stocksArray) {
       const { symbol, name, price } = await fetchStockData(x);

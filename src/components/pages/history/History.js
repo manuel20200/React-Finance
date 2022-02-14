@@ -23,32 +23,23 @@ const History = () => {
 
   const fetchDataHandler = async () => {
     const fetchTransformation = (data) => {
-      console.log(data);
       let auxArray = null;
       let newTransacted = null;
       for (let keysArray in data) {
         console.log(keysArray);
         if (data[keysArray]["username"] === userName) {
           auxArray = data[keysArray]["transactions"];
-          console.log("auxArray");
-          console.log(auxArray);
           break;
         }
       }
       newTransacted = auxArray
         .filter((item) => {
-          return item !== null;
+          return Object.keys(item)[0] !== "avoid";
         })
         .map((x, index) => {
           let value = null;
-          if (x === null) {
-            console.log("is null!");
-          }
-          console.log("Object.values(x)");
           try {
-            console.log(Object.values(x));
             value = Object.values(x);
-            console.log(value[0][0]);
           } catch (e) {
             console.log("error");
             console.log(e);
@@ -62,7 +53,6 @@ const History = () => {
             date: value[0][4],
           };
         });
-      console.log(newTransacted);
       setState(newTransacted);
     };
     sendRequest(

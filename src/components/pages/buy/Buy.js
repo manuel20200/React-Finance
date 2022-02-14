@@ -45,10 +45,10 @@ const Buy = () => {
       console.log("priceToPay");
       console.log(priceToPay);
       for (let keys in data) {
-        if (data[keys].cash < priceToPay) {
-          return setPageState("NoCash");
-        }
         if (data[keys].username === userName) {
+          if (data[keys].cash < priceToPay) {
+            return setPageState("NoCash");
+          }
           keyArray = keys;
           // Update actual transaction for the actual user
           data[keys].transactions.push(par);

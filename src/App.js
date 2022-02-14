@@ -23,12 +23,14 @@ function App() {
         <Header></Header>
         <Routes>
           <Route path="/" element={<Index />}></Route>
-          <Route path="/buy" element={<Buy />}></Route>
-          <Route path="/history" element={<History />}></Route>
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/quote" element={<Quote />}></Route>
-          <Route path="/register" element={<Register />}></Route>
-          <Route path="/sell" element={<Sell />}></Route>
+          {isLogging && <Route path="/buy" element={<Buy />}></Route>}
+          {isLogging && <Route path="/history" element={<History />}></Route>}
+          {!isLogging && <Route path="/login" element={<Login />}></Route>}
+          {isLogging && <Route path="/quote" element={<Quote />}></Route>}
+          {!isLogging && (
+            <Route path="/register" element={<Register />}></Route>
+          )}
+          {isLogging && <Route path="/sell" element={<Sell />}></Route>}
           <Route path="*" element={<Navigate to="/" />}></Route>
         </Routes>
       </AuthContext.Provider>

@@ -9,33 +9,34 @@ const Login = () => {
   const passwordRef = useRef();
   const { setUserName, setIsLogging } = useContext(AuthContext);
   const navigate = useNavigate();
-  const loginDataHandler = () => {
+  const submitLoginDataHandler = (event) => {
+    event.preventDefault();
     setUserName(userNameRef.current.value);
     setIsLogging(true);
     navigate("/");
   };
   return (
-    <React.Fragment>
+    <section>
       <h1>Login page</h1>
       <div style={{ height: "20px" }}></div>
-      <input
-        className={classes.inputUser}
-        placeholder="username"
-        type="text"
-        id="username"
-        ref={userNameRef}
-      ></input>
-      <input
-        className={classes.inputPassword}
-        placeholder="password"
-        type="text"
-        id="password"
-        ref={passwordRef}
-      ></input>
-      <button className={classes.button} onClick={loginDataHandler}>
-        Login
-      </button>
-    </React.Fragment>
+      <form onSubmit={submitLoginDataHandler}>
+        <input
+          className={classes.inputUser}
+          placeholder="username"
+          type="text"
+          id="username"
+          ref={userNameRef}
+        ></input>
+        <input
+          className={classes.inputPassword}
+          placeholder="password"
+          type="text"
+          id="password"
+          ref={passwordRef}
+        ></input>
+        <button className={classes.button}>Login</button>
+      </form>
+    </section>
   );
 };
 

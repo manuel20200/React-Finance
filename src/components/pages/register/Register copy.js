@@ -1,7 +1,7 @@
 import React, { useRef, useState, useContext } from "react";
 import { AuthContext } from "../../../context/AuthContext";
 import useFetch from "../../hooks/useFetch";
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import classes from "./Register.module.css";
 
@@ -18,13 +18,11 @@ const Register = () => {
   const usernameRef = useRef();
   const password1Ref = useRef();
   const password2Ref = useRef();
+  const navigate = useNavigate();
   const { setUserName, setIsLogging } = useContext(AuthContext);
-  const { sendRequest, errorFb } = useFetch();
+  const { sendRequest } = useFetch();
 
-  const createNewUserHandler = async (event) => {
-    event.preventDefault();
-    const userName = usernameRef.current.value;
-    const password = password1Ref.current.value;
+  const createNewUserHandler = () => {
     if (
       password1Ref.current.value === "" ||
       password1Ref.current.value !== password2Ref.current.value
@@ -32,59 +30,39 @@ const Register = () => {
       return setIsUserInvalid("wrong password");
     }
 
-    const AuthResponse = await sendRequest(
-      {
-        url: "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDWXZCmt9T9yu3pQXCL8345_L-vsmAEOKs",
-        method: "POST",
-        body: {
-          email: userName,
-          password: password,
-          returnSecureToken: true,
-        },
-        headers: {
-          "Content-Type": "application/json",
-        },
-      },
-      (data) => {
-        return data;
+    const applyData = async (data) => {
+      for (let keys in data) {
+        if (
+          data[keys].username.toUpperCase() ===
+          usernameRef.current.value.toUpperCase()
+        ) {
+          return setIsUserInvalid("exist");
+        }
       }
-    );
-    console.log("AuthResponse");
-    console.log(AuthResponse);
-    console.log(errorFb);
-
-    if (AuthResponse.error) {
-      //const res = await AuthResponse.json();
-      console.log("res.email");
-      console.log(AuthResponse);
-      console.log(AuthResponse.error.message);
-      console.log(AuthResponse.error.code);
-      return setIsUserInvalid(AuthResponse.error.message);
-    }
-
-    initialState.username = userName;
-    initialState.password = password;
-    const FBResponse = await sendRequest(
-      {
+      initialState.username = usernameRef.current.value;
+      initialState.password = password1Ref.current.value;
+      await sendRequest({
         url: "https://react-httprequest-2a14f-default-rtdb.firebaseio.com/users.json",
         method: "POST",
         body: initialState,
-      },
-      (data) => {
-        return data;
-      }
-    );
-    if (FBResponse !== null) {
-      console.log("userName");
-      console.log(userName);
+      });
       setIsUserInvalid("valid");
-      setUserName(userName);
+      setUserName(initialState.username);
       setIsLogging(true);
-    }
+      navigate("/");
+    };
+    sendRequest(
+      {
+        url: "https://react-httprequest-2a14f-default-rtdb.firebaseio.com/users.json",
+      },
+      applyData
+    );
   };
 
-  if (isUserInvalid !== "valid" && isUserInvalid !== null) {
-    return <h1>Error: {isUserInvalid}</h1>;
+  if (isUserInvalid === "exist") {
+    return <h1>User already exists, use another one.</h1>;
+  } else if (isUserInvalid === "wrong password") {
+    return <h1>Confirmation of password is incorrect.</h1>;
   }
 
   return (
